@@ -7,7 +7,7 @@ export class Lps extends React.Component {
 
     super(props);
     let component = this;
-    const { player } = this.player.getState();
+    this.changeCurrentTime = this.changeCurrentTime.bind(this);
 
     let calibrage = {
         x : [-100,100],
@@ -46,12 +46,21 @@ export class Lps extends React.Component {
     });
 
   }
+
+  changeCurrentTime(seconds) {
+    return () => {
+      const { player } = this.player.getState();
+      this.player.seek(player.currentTime + seconds);
+      console.log(player.currentTime)
+    };
+  }
+
   render(){
     
     console.log(player.currentTime); // print current time
     return(
       <div>
-        <Player className="theVideo">
+        <Player ref={player => {this.player = player;}}>
           <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
         </Player>
         <div style={{
