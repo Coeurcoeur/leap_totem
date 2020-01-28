@@ -3,39 +3,20 @@ import { Player } from 'video-react'
 export class PlayerComponent extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.changeCurrentTime = this.changeCurrentTime.bind(this);
-    // this.seek = this.seek.bind(this);
+    this.frame=0;
   }
 
-  handleStateChange(state) {
-    // copy player state to this component's state
-    this.setState({
-      player: state
-    });
-  }
-
-  changeCurrentTime(seconds) {
-    return () => {
-      const { player } = this.player.getState();
-      this.player.seek(player.currentTime + seconds);
-      console.log(player)
-    };
-  }
-  
   render(){
-    // console.log(player)
+    this.frame++;
+    if(this.refs.player && this.frame%15==0){
+      this.refs.player.seek(this.refs.player.getState().player.currentTime + Math.round(this.props.lps));
+      this.refs.player.play()
+    }
     return(
-      <div>
-        <Player 
-          ref={player => {
-            this.player = player;
-          }}
-        >
+      <div style={{transform:"scale(.5,.5)"}}>
+        <Player ref="player">
           <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
         </Player>
-        <button onClick={this.changeCurrentTime(10)}>
-          currentTime += 10
-        </button>
       </div>
     )
 

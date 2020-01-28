@@ -1,0 +1,12 @@
+
+.sequence{
+  position: relative;
+}
+.sequence img{
+  position: absolute;
+  top:0;
+  left:0;
+  width:50%;
+  height:auto;
+  background-size: cover;
+}
