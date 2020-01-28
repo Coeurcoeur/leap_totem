@@ -1,7 +1,5 @@
 import Leap from "leapjs"
 
-
-
 export class Lps extends React.Component {
   constructor(props){
     super(props);
@@ -27,26 +25,26 @@ export class Lps extends React.Component {
           z : 0
         };
 
-        palmPosition.x = hand.palmPosition;
-        if (hand.palmPosition[0] < calibrage.x[0]){
-         palmPosition.x = calibrage.x[0];
-        }else if(hand.palmPosition[0] > calibrage.x[1]){
-         palmPosition.x = calibrage.x[1];
-        }
-        palmPosition.x < 0 ? palmPosition.x = palmPosition.x/Math.abs(calibrage.x[0]) : palmPosition.x = palmPosition.x/calibrage.x[1];
+        palmPosition.x = hand.palmPosition[0];
+        // if (hand.palmPosition[0] < calibrage.x[0]){
+        //  palmPosition.x = calibrage.x[0];
+        // }else if(hand.palmPosition[0] > calibrage.x[1]){
+        //  palmPosition.x = calibrage.x[1];
+        // }
+        // palmPosition.x < 0 ? palmPosition.x = palmPosition.x/Math.abs(calibrage.x[0]) : palmPosition.x = palmPosition.x/calibrage.x[1];
 
-        // if(hand.palmPosition[1] < calibrage.z[0]){
-        //   hand.palmPosition[1] = calibrage.z[0]
-        // }else if(hand.palmPosition[1] > calibrage.z[1]){
-        //   hand.palmPosition[1] = calibrage.z[1]
-        // }
-        // if(hand.palmPosition[2] < calibrage.y[0]){
-        //   hand.palmPosition[2] = calibrage.y[0]
+        palmPosition.y = hand.palmPosition[2];
+        // if (hand.palmPosition[2] < calibrage.y[0]){
+        //  palmPosition.y = calibrage.y[0];
         // }else if(hand.palmPosition[0] > calibrage.y[1]){
-        //   hand.palmPosition[2] = calibrage.y[1]
+        //  palmPosition.y = calibrage.y[1];
         // }
+        // palmPosition.y < 0 ? palmPosition.y = palmPosition.y/Math.abs(calibrage.y[0]) : palmPosition.y = palmPosition.y/calibrage.x[1];
+
+        palmPosition.z = hand.palmPosition[1];
+
         component.setState({
-          position : palmPosition
+          position : [palmPosition.x,palmPosition.z,palmPosition.y]
         })
       }
     });
