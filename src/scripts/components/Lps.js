@@ -1,13 +1,11 @@
 import Leap from "leapjs"
-// import '~video-react/dist/video-react.css'
-import { Player } from 'video-react'
+
+
 
 export class Lps extends React.Component {
   constructor(props){
-
     super(props);
     let component = this;
-    this.changeCurrentTime = this.changeCurrentTime.bind(this);
 
     let calibrage = {
         x : [-100,100],
@@ -22,11 +20,21 @@ export class Lps extends React.Component {
     Leap.loop({
       // hand callbacks are run once for each hand in the frame
       hand: function(hand){
-        // if (hand.palmPosition[0] < calibrage.x[0]){
-        //   hand.palmPosition[0] = calibrage.x[0]
-        // }else if(hand.palmPosition[0] > calibrage.x[1]){
-        //   hand.palmPosition[0] = calibrage.x[1]
-        // }
+
+        let palmPosition = {
+          x : 0,
+          y : 0,
+          z : 0
+        };
+
+        palmPosition.x = hand.palmPosition;
+        if (hand.palmPosition[0] < calibrage.x[0]){
+         palmPosition.x = calibrage.x[0];
+        }else if(hand.palmPosition[0] > calibrage.x[1]){
+         palmPosition.x = calibrage.x[1];
+        }
+        palmPosition.x < 0 ? palmPosition.x = palmPosition.x/Math.abs(calibrage.x[0]) : palmPosition.x = palmPosition.x/calibrage.x[1];
+
         // if(hand.palmPosition[1] < calibrage.z[0]){
         //   hand.palmPosition[1] = calibrage.z[0]
         // }else if(hand.palmPosition[1] > calibrage.z[1]){
@@ -38,31 +46,15 @@ export class Lps extends React.Component {
         //   hand.palmPosition[2] = calibrage.y[1]
         // }
         component.setState({
-          position : hand.palmPosition
+          position : palmPosition
         })
-
-        console.log(hand.palmPosition)
       }
     });
 
   }
-
-  changeCurrentTime(seconds) {
-    return () => {
-      const { player } = this.player.getState();
-      this.player.seek(player.currentTime + seconds);
-      console.log(player.currentTime)
-    };
-  }
-
   render(){
-    
-    console.log(player.currentTime); // print current time
     return(
       <div>
-        <Player ref={player => {this.player = player;}}>
-          <source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" />
-        </Player>
         <div style={{
           position:"absolute",
           left:(this.state.position[0]+500),
@@ -73,6 +65,7 @@ export class Lps extends React.Component {
           backgroundColor:"#000"
         }}>
         </div>
+        {this.props.children}
       </div>
     )
 
