@@ -77,7 +77,7 @@ controller.on("frame", function(frame) {
     let windowHeight = window.innerHeight/2;
     return(
       <div>
-        <div style={{
+        {/* <div style={{
           position:"absolute",
           left:this.state.position.x*windowWidth+windowWidth,
           top:this.state.position.y*windowHeight+windowHeight,
@@ -87,7 +87,7 @@ controller.on("frame", function(frame) {
           backgroundColor:"#000",
           transformOrigin: 'center'
         }}>
-        </div>
+        </div> */}
         <Sequence lps={this.state}/>
       </div>
     )
