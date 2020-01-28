@@ -2,11 +2,20 @@ import Leap from "leapjs";
 
 export class Lps extends React.Component {
   constructor(props){
+
     super(props);
+    let component = this;
+
+    let calibrage = {
+        x : [-150,150],
+        y : [-150,150],
+        z : [-150,150]
+    }
+
     this.state = {
       position : [0,0,0]
     }
-    let component = this;
+
     Leap.loop({
       // hand callbacks are run once for each hand in the frame
       hand: function(hand){
@@ -16,7 +25,6 @@ export class Lps extends React.Component {
       }
     });
 
-    console.log("coucou")
   }
   render(){
     return(
