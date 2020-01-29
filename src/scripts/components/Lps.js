@@ -1,6 +1,6 @@
 import Leap from "leapjs"
 import {PlayerComponent} from './PlayerComponent'
-import {Sequence} from './Sequence'
+import {Sequence} from './Sequence_v2'
 
 export class Lps extends React.Component {
   constructor(props){
@@ -17,11 +17,6 @@ export class Lps extends React.Component {
       position : {x:0,y:0,z:0},
       status : 'no-hand'
     }
-    /*
-    var controller = new Leap.Controller()
-controller.on("frame", function(frame) {
-    console.log(frame.hands.length)
-});*/
 
     Leap.loop({
       frame: function(frame){

@@ -1,8 +1,6 @@
 var webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -60,30 +58,6 @@ module.exports = {
 				}
 			 ]
 		 },
-     optimization: {
-      minimizer: [
-        new UglifyJSPlugin({
-          sourceMap: true,
-          uglifyOptions: {
-            compress: {
-              inline: false
-            }
-          }
-        })
-      ],
-      runtimeChunk: false,
-      splitChunks: {
-        cacheGroups: {
-          default: false,
-          commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendor_app',
-            chunks: 'all',
-            minChunks: 2
-          }
-        }
-      }
-    },
     devServer: {
       historyApiFallback: true,
       host : '0.0.0.0',
