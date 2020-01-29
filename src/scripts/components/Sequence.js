@@ -1,7 +1,7 @@
 import React from 'react';
-
 import '../styles/sequences.css';
 
+// ADD GENERATIVE IMPORT
 import {sequence01} from '../sequences/01.js';
 
 export class Sequence extends React.Component {
@@ -48,6 +48,7 @@ export class Sequence extends React.Component {
     this.seek(this.props.lps);
     return(
       <div className="sequence">
+        {/* GENERATIVE HTML IMG */}
         {sequence01.files.map(function(image,index){
           return(<img key={index} style={{display : (component.currentFrame == index ? "block" : "none")}} src={sequence01.folder+image.replace('./','/')}/>);
         })}

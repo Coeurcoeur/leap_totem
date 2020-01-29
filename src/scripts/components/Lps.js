@@ -1,5 +1,4 @@
 import Leap from "leapjs"
-import {PlayerComponent} from './PlayerComponent'
 import {Sequence} from './Sequence'
 
 export class Lps extends React.Component {
@@ -17,12 +16,8 @@ export class Lps extends React.Component {
       position : {x:0,y:0,z:0},
       status : 'no-hand'
     }
-    /*
-    var controller = new Leap.Controller()
-controller.on("frame", function(frame) {
-    console.log(frame.hands.length)
-});*/
-
+  
+    // LEAP MOTION DETECTION
     Leap.loop({
       frame: function(frame){
         if(frame.hands[0]!=undefined){
@@ -73,11 +68,13 @@ controller.on("frame", function(frame) {
 
   }
   render(){
-    let windowWidth = window.innerWidth/2;
-    let windowHeight = window.innerHeight/2;
+    // SCOPE SCREEN
+    // let windowWidth = window.innerWidth/2;
+    // let windowHeight = window.innerHeight/2;
     return(
       <div>
-        {/* <div style={{
+        {/* SCOPE MOVE WITH HAND
+        <div style={{
           position:"absolute",
           left:this.state.position.x*windowWidth+windowWidth,
           top:this.state.position.y*windowHeight+windowHeight,
@@ -93,5 +90,3 @@ controller.on("frame", function(frame) {
     )
   }
 }
-
-//<PlayerComponent lps={this.state.position.x}/>
