@@ -19,7 +19,7 @@ export class Sequence extends React.Component {
     this.play();
   }
   play(){
-    const component = this;
+    /*const component = this;
     this.interval = setInterval(function(){
       let next = component.currentFrame +1;
       if(next>sequence01.files.length-1){
@@ -31,7 +31,7 @@ export class Sequence extends React.Component {
       component.setState({
         test:'playing'
       })
-    },100);
+    },100);*/
   }
   seek(state){
     let next = this.currentFrame +Math.round(state.position.x*10);
