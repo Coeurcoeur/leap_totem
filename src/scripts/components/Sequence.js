@@ -34,7 +34,8 @@ export class Sequence extends React.Component {
     },100);*/
   }
   seek(state){
-    let next = this.currentFrame +Math.round(state.position.x*10);
+    let next = this.currentFrame +Math.round(state.position.x);
+    console.log(state.position.x*10)
     if(next>sequence01.files.length-1){
       next=sequence01.files.length-1;
     }else if(next<0){

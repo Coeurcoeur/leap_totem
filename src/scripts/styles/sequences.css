@@ -1,4 +1,4 @@
-
+body{background-color: black;}
 .sequence{
   position: relative;
   width:500px;
@@ -7,10 +7,8 @@
   top:0;
 }
 .sequence img{
-  position: absolute;
   top:0;
   left:-60%;
-  width:280%;
   height:100%;
   background-size: cover;
 }
