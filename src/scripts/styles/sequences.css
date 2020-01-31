@@ -6,13 +6,14 @@ body,html{background-color:black;}
   background-color: #fff;
 }
 .sequence{
-  position: relative;
+  position: absolute;
   width:500px;
   height:755px;
+  top:0;
 }
 .sequence img{
   top:0;
-  left:-60%;
+  left:0;
   height:100%;
   background-size: cover;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/sequences.css';
 
 // ADD GENERATIVE IMPORT
-import {sequence01} from '../sequences/01.js';
+// import {sequence01} from '../sequences/01.js';
 
 export class Sequence extends React.Component {
   constructor(props){
@@ -11,19 +11,19 @@ export class Sequence extends React.Component {
     this.state = {
       timer : 0
     }
-    
-    /* this.images = [];
+  }  
+    /*this.images = [];
     for(let i=0;i<14;i++){
       this.images.push(React.createRef());
-    } */
-    /*this.currentFrame=0;
+    }
+    this.currentFrame=0;
     this.control = 'no-hand';
     this.play=this.play.bind(this);
     this.seek=this.seek.bind(this);
     this.interval = null;
-    this.play();*/
-  }
-  /*play(){
+    this.play();
+  
+  play(){
     const component = this;
     this.interval = setInterval(function(){
       let next = component.currentFrame +1;
@@ -37,8 +37,8 @@ export class Sequence extends React.Component {
         test:'playing'
       })85
     },100);
-  }*/
-  /*seek(state){
+  }
+  seek(state){
     let next = this.currentFrame +Math.round(state.position.x);
     console.log(state.position.x*10)
     if(next>sequence01.files.length-1){
@@ -48,7 +48,12 @@ export class Sequence extends React.Component {
     }
     this.currentFrame=next;
     this.control = state.status;
-  }*/
+  }
+
+  // SAVE
+  {sequence01.files.map(function(image,index){
+    return(<img key={index} style={{display : (component.currentFrame == index ? "block" : "none")}} src={sequence01.folder+image.replace('./','/')}/>);
+  })}*/
 
   componentDidMount(){
     const component = this;
@@ -62,7 +67,8 @@ export class Sequence extends React.Component {
           timer : calcul
         }
       )
-    },6000)
+
+    },5800)
   }
   
   render(){
@@ -71,19 +77,18 @@ export class Sequence extends React.Component {
     console.log(this.state.timer);
     return(
       <div>
-        {component.state.timer > 12 && component.state.timer < 19 && (<div 
+        {component.state.timer > 2 && component.state.timer < 6 && (<div 
           className="lumiere" 
           style={{
             opacity:component.props.lps.position.x,
           }}
         ></div>)}
-        {component.state.timer > 1 && component.state.timer < 5 && (<div 
+        {component.state.timer > 11 && component.state.timer < 19 && (<div 
           className="sequence"
-        >
-          {sequence01.files.map(function(image,index){
-            return(<img key={index} style={{display : (component.currentFrame == index ? "block" : "none")}} src={sequence01.folder+image.replace('./','/')}/>);
-          })}
-        </div>)}
+          style={{
+            opacity:component.props.lps.position.x,
+          }}
+        ></div>)}
       </div>
     )}
 }
