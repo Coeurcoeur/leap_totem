@@ -9,7 +9,7 @@ export class Lps extends React.Component {
     let calibrage = {
         x : [-100,100],
         y : [-100,100],
-        z : [50,320]
+        z : [-100,100]
     }
 
     this.state = {
@@ -37,7 +37,7 @@ export class Lps extends React.Component {
 
 
           palmPosition.y = hand.palmPosition[2];
-           if (hand.palmPosition[2] < calibrage.y[0]){
+          if (hand.palmPosition[2] < calibrage.y[0]){
             palmPosition.y = calibrage.y[0];
           }else if(hand.palmPosition[2] > calibrage.y[1]){
             palmPosition.y = calibrage.y[1];
@@ -46,7 +46,7 @@ export class Lps extends React.Component {
 
 
           palmPosition.z = hand.palmPosition[1];
-           if (hand.palmPosition[1] < calibrage.z[0]){
+          if (hand.palmPosition[1] < calibrage.z[0]){
             palmPosition.z = calibrage.z[0];
           }else if(hand.palmPosition[1] > calibrage.z[1]){
             palmPosition.z = calibrage.z[1];
@@ -73,18 +73,6 @@ export class Lps extends React.Component {
     // let windowHeight = window.innerHeight/2;
     return(
       <div>
-        {/* SCOPE MOVE WITH HAND
-        <div style={{
-          position:"absolute",
-          left:this.state.position.x*windowWidth+windowWidth,
-          top:this.state.position.y*windowHeight+windowHeight,
-          transform:"scale(" + this.state.position.z + "," + this.state.position.z + ")",
-          width:"100px",
-          height:"100px",
-          backgroundColor:"#000",
-          transformOrigin: 'center'
-        }}>
-        </div> */}
         <Sequence lps={this.state}/>
       </div>
     )
